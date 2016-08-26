@@ -1,0 +1,21 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(\App\User::class)->create(
+            [
+                'email'     => 'foo@foo.com',
+                'password'  => bcrypt(env('EXAMPLE_USER_PASSWORD'))
+            ]
+        );
+    }
+}
