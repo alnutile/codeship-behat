@@ -3,7 +3,7 @@ Feature: User Login Area
   As an anonymous user
   So that they can see secured parts of the site
 
-  @happy_path @user_auth
+  @happy_path @user_auth @javascript
   Scenario: Logging in with Success
     Given I visit the login page
     And I fill in the form with my username and password and submit the form
