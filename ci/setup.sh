@@ -24,4 +24,5 @@ echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PO
 ## Now we are ready to talk to Selenium let's start the Application server
 echo "Starting Laravel App"
 cp .env.codeship .env
-php artisan serve --port=8080 -n -q && sleep 3
+php artisan serve --port=8080 -n -q 2>/dev/null &
+sleep 3
