@@ -20,9 +20,9 @@ java -jar "${CACHED_DOWNLOAD}" -port "${SELENIUM_PORT}" ${SELENIUM_OPTIONS} -log
 sleep "${SELENIUM_WAIT_TIME}"
 echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PORT}..."
 
-
 ## Now we are ready to talk to Selenium let's start the Application server
 echo "Starting Laravel App"
 cp .env.codeship .env
+phpenv local 5.6
 php artisan serve --port=8080 -n -q 2>/dev/null &
 sleep 3

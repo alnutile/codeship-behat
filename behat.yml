@@ -3,7 +3,6 @@ default:
     user_auth:
       contexts: [ UserAuthenticationContext ]
       filters: { tags: '@user_auth' }
-
   extensions:
     Laracasts\Behat:
         # env_path: .env.behat
@@ -27,3 +26,18 @@ codeship_non_sauce:
             selenium2:
               wd_host: 'http://127.0.0.1:4444/wd/hub'
             browser_name: chrome
+
+saucelabs:
+  extensions:
+    Laracasts\Behat:
+      env_path: .env.codeship
+    Behat\MinkExtension:
+      base_url: http://127.0.0.1:8080
+      default_session: laravel
+      selenium2:
+        browser: chrome
+        wd_host: 'http://SAUCE_ACCOUNT_NAME:SAUCE_ACCOUNT_KEY@localhost:4445/wd/hub'
+        capabilities:
+          platform: 'Windows 8.1'
+          browser: chrome
+          version: '52'
