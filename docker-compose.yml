@@ -1,0 +1,5 @@
+app:
+  build:
+    image: codeship/app
+    path: ci
+    dockerfile_path: Dockerfile
