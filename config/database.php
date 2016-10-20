@@ -62,6 +62,9 @@ return [
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
+            'options' => array(
+                PDO::MYSQL_ATTR_SSL_CA => base_path('/ci/rds-combined-ca-bundle.pem')
+            ),
         ],
 
         'pgsql' => [
