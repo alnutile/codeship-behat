@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class QueryJsonTest extends TestCase
@@ -30,14 +31,17 @@ class QueryJsonTest extends TestCase
             ]
         );
 
+
         factory(\App\Example::class)->create([
             'data' => [
                 "foo" => "here",
                 "bar" => "not-here",
             ]
         ]);
-
+        DB::enableQueryLog();
         $results = \App\Example::where("data->foo", "here")->first();
+        var_dump(DB::getQueryLog());
+        var_dump(Config::get('database.connections.mysql_testing'));
         PHPUnit_Framework_Assert::assertNotNull($results);
     }
 
