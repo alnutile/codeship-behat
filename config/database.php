@@ -5,7 +5,7 @@ if(!function_exists('codeship_ssl')) {
     function codeship_ssl() {
         if (env('DB_DATABASE') == 'codeship')
         {
-            return [PDO::MYSQL_ATTR_SSL_CA => base_path('/ci/rds-combined-ca-bundle.pem')];
+            return ['options'   => [PDO::MYSQL_ATTR_SSL_CA => base_path('/ci/rds-combined-ca-bundle.pem')]];
         }
     }
 }
@@ -62,20 +62,6 @@ return [
             'prefix' => '',
         ],
 
-
-        'mysql_testing' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-            'options'   => codeship_ssl()
-        ],
-
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
@@ -86,6 +72,7 @@ return [
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
+            codeship_ssl()
         ],
 
         'pgsql' => [
